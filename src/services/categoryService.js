@@ -7,6 +7,13 @@ const { Category } = require('../models');
     return newCategory;
  };
 
+ const getAll = async () => {
+  const categories = await Category.findAll({ attributes: { exclude: ['password'] } });
+
+  return categories;
+};
+
  module.exports = {
   createCategory,
+  getAll,
  };
