@@ -16,7 +16,14 @@ const getAll = async () => {
   return user;
 };
 
+const getById = async (id) => {
+  console.log('user service', id);
+  const user = await User.findByPk(id);
+  return user;
+};
+
 module.exports = {
   creatUser,
   getAll,
+  getById,
 };

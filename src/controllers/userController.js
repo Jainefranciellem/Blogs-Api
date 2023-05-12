@@ -1,4 +1,4 @@
-const { creatUser, getAll } = require('../services/userService');
+const { creatUser, getAll, getById } = require('../services/userService');
 const generateToken = require('../auth/token');
 
  const createdUser = async (req, res) => {
@@ -21,7 +21,24 @@ const getAllUser = async (_req, res) => {
   return res.status(200).json(user);
 };
 
+const getByIdUser = async (req, res) => {
+  console.log('user service', req.params.id);
+  try {
+    const { id } = req.params;
+    const user = await getById(id);
+
+  if (!user) {
+    return res.status(404).json({ message: 'User does not exist' });
+  }
+  const { password: _password, ...userWithoutPassword } = user.dataValues;
+  return res.status(200).json(userWithoutPassword);
+  } catch (error) {
+    return res.status(500).json({ message: 'Erro interno', error: error.message });
+  }
+};
+
 module.exports = {
   createdUser,
   getAllUser,
+  getByIdUser,
 };

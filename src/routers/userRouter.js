@@ -8,5 +8,6 @@ const { validateToken } = require('../middleware/authMiddleware');
 
 router.post('/', validateUser, validateEmailAndName, userController.createdUser);
 router.get('/', validateToken, userController.getAllUser);
+router.get('/:id', validateToken, userController.getByIdUser);
 
 module.exports = router;
