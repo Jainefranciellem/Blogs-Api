@@ -3,7 +3,7 @@ const generateToken = require('../auth/token');
 
  const createdUser = async (req, res) => {
   try {
-    console.log('email and password controller', req.body);
+    console.log('email and password controller', req);
     const { displayName, email, password, image } = req.body;
 
     const newUser = await creatUser(displayName, email, password, image);

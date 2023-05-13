@@ -1,7 +1,13 @@
+/**
+ * 
+ * @param { import('sequelize').Sequelize } sequelize 
+ * @param { import('sequelize').DataTypes } DataTypes 
+ * @returns 
+ */
+
 module.exports = (sequelize, DataTypes) => {
   const BlogPost = sequelize.define('BlogPost', {
     id: {
-      allowNull: false,
       primaryKey: true,
       autoIncrement: true,
       type: DataTypes.INTEGER,
@@ -20,12 +26,12 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: true,
     },
     published: {
-      allowNull: false,
       type: DataTypes.DATE,
+      defaultValue: new Date().toISOString()
     },
     updated: {
       type: DataTypes.DATE,
-      allowNull: false,
+      defaultValue: new Date().toISOString()
     },
   },
   {
