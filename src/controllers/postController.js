@@ -1,7 +1,6 @@
-const { createPost } = require('../services/postService');
+const { createPost, getAll } = require('../services/postService');
 
 const create = async (req, res) => {
-  console.log('create post', req.payload);
   try {
     const { title, content, categoryIds } = req.body;
     const { id } = req.payload.data;
@@ -13,6 +12,17 @@ const create = async (req, res) => {
   }
 };
 
+const getAllPosts = async (_req, res) => {
+ try {
+  const posts = await getAll();
+  console.log('post', posts);
+  return res.status(200).json(posts);
+ } catch (error) {
+  return res.status(500).json({ message: 'internal error', error: error.message });
+ }
+};
+
 module.exports = {
   create,
+  getAllPosts,
 };
