@@ -16,6 +16,7 @@ app.use('/login', loginRouter);
 app.use('/user', userRouter);
 app.use('/categories', categoryRouter);
 app.use('/post', postRouter);
+app.use('/post/:id', postRouter);
 
 // ...
 
