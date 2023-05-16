@@ -1,5 +1,5 @@
 const { createPost, getAll, getById,
-  updatePostById, deletePostById } = require('../services/postService');
+  updatePostById, deletePostById, getSearch } = require('../services/postService');
 
 const create = async (req, res) => {
   try {
@@ -52,11 +52,19 @@ const updateById = async (req, res) => {
 const deleteById = async (req, res) => {
   try {
     const { id } = req.params;
-    const deletePost = await deletePostById(id);
-    if (deletePost === 0) {
-      return res.status(404).json({ message: 'Post does not exist' });
-    }
+    await deletePostById(id);
     res.status(204).end();
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ error: error.message });
+  }
+};
+
+const getBySearch = async (req, res) => {
+  try {
+    const { q } = req.query;
+    const posts = await getSearch(q);
+    return res.status(200).json(posts);
   } catch (error) {
     console.log(error);
     return res.status(500).json({ error: error.message });
@@ -69,4 +77,5 @@ module.exports = {
   getPostById,
   updateById,
   deleteById,
+  getBySearch,
 };

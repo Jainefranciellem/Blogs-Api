@@ -8,6 +8,7 @@ const validateupdate = require('../middleware/updateMidleware');
 const validatePost = require('../middleware/postMiddleware');
 const validateUser = require('../middleware/authUserMidleware');
 
+router.get('/search', validateToken, postController.getBySearch);
 router.get('/', validateToken, postController.getAllPosts);
 router.post('/', validateToken, validatePost, postController.create);
 router.get('/:id', validateToken, postController.getPostById);
