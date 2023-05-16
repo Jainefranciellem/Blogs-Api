@@ -1,4 +1,5 @@
-const { createPost, getAll, getById, updatePostById } = require('../services/postService');
+const { createPost, getAll, getById,
+  updatePostById, deletePostById } = require('../services/postService');
 
 const create = async (req, res) => {
   try {
@@ -31,7 +32,7 @@ const getPostById = async (req, res) => {
     }
     return res.status(200).json(post);
   } catch (error) {
-  return res.status(500).json({ message: 'internal error', error: error.message });
+    return res.status(404).json({ message: 'Post does not exist' });
   }
 };
 
@@ -48,9 +49,24 @@ const updateById = async (req, res) => {
   }
 };
 
+const deleteById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deletePost = await deletePostById(id);
+    if (deletePost === 0) {
+      return res.status(404).json({ message: 'Post does not exist' });
+    }
+    res.status(204).end();
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ error: error.message });
+  }
+};
+
 module.exports = {
   create,
   getAllPosts,
   getPostById,
   updateById,
+  deleteById,
 };

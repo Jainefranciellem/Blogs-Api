@@ -11,6 +11,8 @@ module.exports = {
           model: 'blog_posts',
           key: 'id',
         },
+      onDelete: 'CASCADE',
+      onUpdate: 'CASCADE',
       },
       category_id: {
         allowNull: false,
@@ -20,12 +22,13 @@ module.exports = {
           model: 'categories',
           key: 'id',
         },
+      onDelete: 'CASCADE',
+      onUpdate: 'CASCADE',
       },
-
     });
   },
 
-  down: async (queryInterface, Sequelize) => {
+  down: async (queryInterface, _Sequelize) => {
     await queryInterface.dropTable('posts_categories');
   }
 };

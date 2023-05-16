@@ -1,4 +1,4 @@
-const { creatUser, getAll, getById } = require('../services/userService');
+const { creatUser, getAll, getById, deleteUserById } = require('../services/userService');
 const generateToken = require('../auth/token');
 
  const createdUser = async (req, res) => {
@@ -37,8 +37,20 @@ const getByIdUser = async (req, res) => {
   }
 };
 
+const deleteById = async (req, res) => {
+  try {
+    const { id } = req.payload.data;
+    await deleteUserById(id);
+    res.status(204).end();
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ error: error.message });
+  }
+};
+
 module.exports = {
   createdUser,
   getAllUser,
   getByIdUser,
+  deleteById,
 };
