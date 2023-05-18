@@ -4,13 +4,13 @@ Bem-vindo ao meu repositório de projetos desenvolvidos no curso de formação T
 
 <h1 align='center' id='Título-e-Imagem-de-capa'>BLog API</h1>
 
-<p align='center'>
-<img src='./mysql.png' width="350" heigth="350"/>
-</p>
-
 <h1>Sobre o projeto</h1>
 
 <p>Blogs API é uma aplicação backend onde desenvolvi uma API Restful e um banco de dados para a produção de conteúdo em um blog, utilizando ORM (Object-Relational Mapping)- Interface da aplicação com o banco de dados, Sequelize e Autenticação utilizando o JWT (JSOn Web Token).
+</p>
+
+<p align='center'>
+<img src='./mysql.png' width="350" heigth="350"/>
 </p>
 
 <h1>Como funciona</h1>
